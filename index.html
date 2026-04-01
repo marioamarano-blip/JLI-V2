@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Laboratorio de Juanita</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
+  <!-- 🌌 Fondo -->
+  <div class="stars-bg"></div>
+
+  <!-- 🏠 PANTALLA INICIO -->
+  <div id="welcome-screen" class="screen active">
+    <div class="welcome-content">
+
+      <div class="title-block">
+        <div class="title-crown">👑</div>
+        <h1 class="main-title">Laboratorio de Juanita</h1>
+        <div class="subtitle">Ingeniería mágica para aprender jugando</div>
+      </div>
+
+      <!-- RUMI -->
+      <div class="rumi-welcome">
+        <div id="rumi-welcome"></div>
+        <div class="welcome-bubble" id="rumi-msg-welcome">
+          ¡Hola Juanita! Elegí un juego para empezar ✨
+        </div>
+      </div>
+
+      <!-- 🎮 BOTONES -->
+      <div class="game-grid">
+        <button class="game-btn btn-sumas" data-game="sumas">
+          <div class="game-icon">➕</div>
+          <div class="game-label">SUMAS</div>
+        </button>
+
+        <button class="game-btn btn-electricidad" data-game="electricidad">
+          <div class="game-icon">⚡</div>
+          <div class="game-label">ELECTRICIDAD</div>
+        </button>
+
+        <button class="game-btn btn-engranajes" data-game="engranajes">
+          <div class="game-icon">⚙️</div>
+          <div class="game-label">ENGRANAJES</div>
+        </button>
+
+        <button class="game-btn btn-palabras" data-game="palabras">
+          <div class="game-icon">📚</div>
+          <div class="game-label">PALABRAS</div>
+        </button>
+      </div>
+
+      <!-- 🔊 + ⭐ -->
+      <div class="bottom-bar">
+        <div class="stars-bar">⭐ <span id="total-stars">0</span></div>
+        <button id="btn-voz" class="voz-btn">🔊 VOZ: ON</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 🎮 PANTALLAS DE JUEGO -->
+
+  <!-- SUMAS -->
+  <div id="sumas-screen" class="screen game-screen">
+    <div class="game-header">
+      <button class="back-btn" data-target="welcome">← VOLVER</button>
+      <h2>SUMAS</h2>
+      <div class="stars-mini">⭐ <span class="stars-count">0</span></div>
+    </div>
+
+    <div class="rumi-strip">
+      <div id="rumi-sumas"></div>
+      <div class="small-bubble" id="rumi-msg-sumas"></div>
+    </div>
+
+    <div id="sumas-content" class="game-content"></div>
+  </div>
+
+  <!-- ELECTRICIDAD -->
+  <div id="electricidad-screen" class="screen game-screen">
+    <div class="game-header">
+      <button class="back-btn" data-target="welcome">← VOLVER</button>
+      <h2>ELECTRICIDAD</h2>
+      <div class="stars-mini">⭐ <span class="stars-count">0</span></div>
+    </div>
+
+    <div class="rumi-strip">
+      <div id="rumi-electricidad"></div>
+      <div class="small-bubble" id="rumi-msg-electricidad"></div>
+    </div>
+
+    <div id="electricidad-content" class="game-content"></div>
+  </div>
+
+  <!-- ENGRANAJES -->
+  <div id="engranajes-screen" class="screen game-screen">
+    <div class="game-header">
+      <button class="back-btn" data-target="welcome">← VOLVER</button>
+      <h2>ENGRANAJES</h2>
+      <div class="stars-mini">⭐ <span class="stars-count">0</span></div>
+    </div>
+
+    <div class="rumi-strip">
+      <div id="rumi-engranajes"></div>
+      <div class="small-bubble" id="rumi-msg-engranajes"></div>
+    </div>
+
+    <div id="engranajes-content" class="game-content"></div>
+  </div>
+
+  <!-- PALABRAS -->
+  <div id="palabras-screen" class="screen game-screen">
+    <div class="game-header">
+      <button class="back-btn" data-target="welcome">← VOLVER</button>
+      <h2>PALABRAS</h2>
+      <div class="stars-mini">⭐ <span class="stars-count">0</span></div>
+    </div>
+
+    <div class="rumi-strip">
+      <div id="rumi-palabras"></div>
+      <div class="small-bubble" id="rumi-msg-palabras"></div>
+    </div>
+
+    <div class="game-content">
+      <div id="palabras-menu" class="palabras-menu">
+        <button class="palabras-btn" data-subjuego="letra-inicial">🔤 LETRA INICIAL</button>
+        <button class="palabras-btn" data-subjuego="completar">✏️ COMPLETAR</button>
+        <button class="palabras-btn" data-subjuego="unir">🔗 UNIR</button>
+        <button class="palabras-btn" data-subjuego="ahorcado">🎯 AHORCADO</button>
+      </div>
+
+      <div id="palabras-content" style="display:none"></div>
+      <button id="palabras-back" class="back-btn" style="display:none">← VOLVER</button>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script type="module">
+    import { initRumi } from './rumi.js';
+    import Voz from './voz.js';
+    import App from './app.js';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      Voz.init();
+
+      initRumi('rumi-welcome');
+      initRumi('rumi-sumas');
+      initRumi('rumi-electricidad');
+      initRumi('rumi-engranajes');
+      initRumi('rumi-palabras');
+
+      App.init();
+    });
+  </script>
+
+</body>
+</html>
